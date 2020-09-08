@@ -1,0 +1,18 @@
+<h1>
+    Shopping List</h1>
+<p>Add, Update and Remove items from Shopping list</p>
+<ol>
+
+    <li *ngFor="let item of shoppinglist">
+        {{item.name}}
+        <button (click)="deleteContact(item.name)">Remove Item</button>
+        <button (click)="updateItem(item)">Update</button>
+    </li>
+
+</ol>
+
+<form (submit)="addContact()">
+
+    <input type="text" onfocus="this.value=''" value="Click here to clear" [(ngModel)]="txtName" name="Name" required>
+    <button type="submit">Add Item </button>
+</form>
