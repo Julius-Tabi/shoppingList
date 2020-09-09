@@ -4,15 +4,18 @@
 <ol>
 
     <li *ngFor="let item of shoppinglist">
-        {{item.name}}
+        {{item.name}} <img src="{{item.downloadurl}}" />
         <button (click)="deleteContact(item.name)">Remove Item</button>
         <button (click)="updateItem(item)">Update</button>
+        <!-- <input id="file" type="file" accept="image/*" (change)="insertpic($event)"> -->
     </li>
 
 </ol>
 
 <form (submit)="addContact()">
 
-    <input type="text" onfocus="this.value=''" value="Click here to clear" [(ngModel)]="txtName" name="Name" required>
-    <button type="submit">Add Item </button>
+    <input type="text" onfocus="this.value=''" value="Click here to clear" [(ngModel)]="txtName" name="Name" required><br><br>
+    <input id="file" onfocus="this.value=''" type="file" accept="image/*" (change)="insertpic($event)" value="Click here to clear">
+    <!-- <img src="{{downloadurl}}" /> -->
+    <button type=" submit ">Add Item </button>
 </form>

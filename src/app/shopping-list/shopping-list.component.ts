@@ -12,19 +12,30 @@ export class ShoppingListComponent implements OnInit {
   shoppinglist;
   txtName;
   alertMessage;
-  
+  downloadurl;
   constructor() {}
 
   ngOnInit(): void{
-    this.shoppinglist=[]
+    this.shoppinglist = []
+    console.log(this.shoppinglist)
+     
   }
+  insertpic(event: any) {
+    let reader = new FileReader();
+          reader.onload = (event: any) => {
+            this.downloadurl = event.target.result;
+           
+          }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+ 
   addContact() {
     if (this.txtName == " " || this.txtName == undefined) {
     this.alertMessage = "Please enter an Item";
         Swal.fire(this.alertMessage);
     } else {
      console.log(this.txtName);
-    this.shoppinglist.push({name:this.txtName})
+    this.shoppinglist.push({name:this.txtName,downloadurl:this.downloadurl})
     }
     
   }
@@ -37,12 +48,16 @@ export class ShoppingListComponent implements OnInit {
       }
     }
   }
-  updateItem(item){
+  updateItem(item) {
     let index = this.shoppinglist.indexOf(item);
     item.name = this.txtName;
+    item.downloadurl = this.downloadurl
     this.shoppinglist[index] = item;
-  
-    console.log(this.shoppinglist);
+    console.log(this.shoppinglist); 
+    
+    
+ 
+    
   }
-  
+ 
 }
