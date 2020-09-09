@@ -20,22 +20,25 @@ export class ShoppingListComponent implements OnInit {
     console.log(this.shoppinglist)
      
   }
+  
   insertpic(event: any) {
-    let reader = new FileReader();
+    
+          let reader = new FileReader();
           reader.onload = (event: any) => {
             this.downloadurl = event.target.result;
-           
           }
       reader.readAsDataURL(event.target.files[0]);
     }
- 
+    
   addContact() {
-    if (this.txtName == " " || this.txtName == undefined) {
-    this.alertMessage = "Please enter an Item";
-        Swal.fire(this.alertMessage);
-    } else {
-     console.log(this.txtName);
-    this.shoppinglist.push({name:this.txtName,downloadurl:this.downloadurl})
+    if (this.txtName == " " || this.txtName == undefined || this.downloadurl == null || this.downloadurl == "") {
+      this.alertMessage = "Please Fill In All the Inputs and Continue";
+      Swal.fire(this.alertMessage); 
+    } 
+    else {
+      console.log(this.txtName);
+      console.log(this.downloadurl);
+      this.shoppinglist.push({ name: this.txtName, downloadurl: this.downloadurl });
     }
     
   }
